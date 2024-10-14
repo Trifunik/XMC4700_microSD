@@ -2,7 +2,7 @@ Trouble shooting
 ****************
 
 This repository is a copy of the "samples/subsys/fs/fs_sample" Zephyr OS example. It is used to access the microSD on the XMC4700 Relax Kit.
-Unfortunately, I am getting error messages from the flashed code.
+Unfortunately, I am getting error messages from the flashed code. The microSD card is FAT formatted and shows no errors on my laptop.
 
 .. code-block:: console
 
