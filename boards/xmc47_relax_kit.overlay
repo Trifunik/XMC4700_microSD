@@ -1,0 +1,46 @@
+&gpio4 {
+  status = "okay";
+};
+
+&spi_mosi_p3_5_u0c1 {
+  drive-strength = "strong-soft-edge";
+  drive-push-pull;
+  hwctrl = "disabled";
+};
+
+&spi_miso_p4_0_u0c1 {
+  drive-strength = "strong-soft-edge";
+  hwctrl = "disabled";
+};
+
+&spi_sclk_p3_6_u0c1 {
+  drive-strength = "strong-soft-edge";
+  drive-push-pull;
+  hwctrl = "disabled";
+};
+
+&usic0ch1 {
+  compatible = "infineon,xmc4xxx-spi";
+  pinctrl-0 = <&spi_mosi_p3_5_u0c1 &spi_miso_p4_0_u0c1 &spi_sclk_p3_6_u0c1>;
+  pinctrl-names = "default";
+  miso-src = "DX0E";
+  interrupts = <96 1 97 1>;
+  interrupt-names = "tx", "rx";
+  status = "okay";
+
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  cs-gpios = <&gpio4 1 GPIO_ACTIVE_HIGH>;
+
+  sdhc0: sdhc@0 {
+    compatible = "zephyr,sdhc-spi-slot";
+    reg = <0>;
+    status = "okay";
+    mmc {
+      compatible = "zephyr,sdmmc-disk";
+      status = "okay";
+    };
+    spi-max-frequency = <24000000>;
+  };
+};
